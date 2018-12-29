@@ -1,0 +1,6 @@
+siteUrl = https://bitbucket.org/mnellemann/pwgen
+gitUrl = https://bitbucket.org/mnellemann/pwgen.git
+version = 0.0.1
+groupId = biz.nellemann.pwgen
+licenses = ['APACHE-2.0'] // or something else 
+id = pwgen
