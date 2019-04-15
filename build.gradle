@@ -12,12 +12,6 @@ apply plugin: "java"
 apply plugin: "groovy"
 apply plugin: 'com.jfrog.bintray'
 
-def artifact = new Properties()
-artifact.load(new FileInputStream("deploy.settings"))
-
-version=artifact.version
-group=artifact.groupId
-
 repositories {
     mavenCentral()
 }
@@ -37,13 +31,10 @@ bintray {
     configurations = ['archives']
     pkg {
         repo = "libs"
-        name = artifact.id
-        websiteUrl = artifact.siteUrl
-        vcsUrl = artifact.gitUrl
-        licenses = artifact.licenses
+        name = id
+        websiteUrl = siteUrl
+        vcsUrl = gitUrl
+        licenses = licenses
         publish = true
-        version {
-            name = artifact.version
-        }
     }
 }
