@@ -13,8 +13,7 @@ To build and test the code;
 ## Usage
 
 Import the library and call the static PasswordGenerator.random() method, which return a String with a new random pasword. There are options to specify the length of the password, if the password should contain capitalized, numeric and/or symbol characters.
-
-
+    
     String newRandomPassword = PasswordGenerator.random(int length, boolean optionCapitalize, boolean optionNumerals, boolean optionSymbols)
 
 
@@ -25,5 +24,6 @@ Import the library and call the static PasswordGenerator.random() method, which 
     }
     
     dependencies {
-        compile 'biz.nellemann.pwgen:pwgen:0.0.1'
+        compile 'biz.nellemann.pwgen:pwgen:1.0.2'
+        runtime "org.slf4j:slf4j-simple:1.7.25"
     }
