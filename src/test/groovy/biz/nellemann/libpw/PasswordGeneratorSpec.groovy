@@ -1,4 +1,4 @@
-package biz.nellemann.pwgen
+package biz.nellemann.libpw
 
 import spock.lang.Specification
 
