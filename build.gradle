@@ -3,16 +3,20 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.+'
+		classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.4'
     }
 }
 
-apply plugin: "idea"
-apply plugin: "java"
-apply plugin: "groovy"
+apply plugin: 'idea'
+apply plugin: 'java'
+apply plugin: 'groovy'
+apply plugin: 'jacoco'
 apply plugin: 'maven'
 apply plugin: 'maven-publish'
 apply plugin: 'com.jfrog.bintray'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
 
 repositories {
     mavenCentral()
@@ -20,14 +24,25 @@ repositories {
 
 dependencies {
     implementation("org.slf4j:slf4j-api:${slf4jVersion}")
-    implementation "org.slf4j:slf4j-simple:${slf4jVersion}"
 
+    testImplementation "org.slf4j:slf4j-simple:${slf4jVersion}"
     testCompile("org.codehaus.groovy:groovy-all:${groovyVersion}")
     testCompile("org.spockframework:spock-core:${spockVersion}") {
         exclude group: "org.codehaus.groovy"
     }
     testCompile( 'com.athaydes:spock-reports:1.6.2' ) {
         transitive = false // this avoids affecting your version of Groovy/Spock
+    }
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+        }
+    }
+    repositories {
+        mavenLocal()
     }
 }
 
@@ -45,3 +60,40 @@ bintray {
         publish = true
     }
 }
+
+
+jacoco {
+	toolVersion = "0.8.4"
+}
+
+jacocoTestReport {
+	group = "verification"
+	reports {
+		xml.enabled false
+		csv.enabled false
+		html.destination file("${buildDir}/reports/coverage")
+	}
+	afterEvaluate {
+		classDirectories.setFrom(files(classDirectories.files.collect {
+			fileTree(dir: it, exclude: 'biz/nellemann/libpaqle/pojo/**')
+		}))
+	}
+}
+test.finalizedBy jacocoTestReport
+
+jacocoTestCoverageVerification {
+	violationRules {
+		rule {
+			element = 'CLASS'
+			limit {
+				counter = 'LINE'
+				value = 'COVEREDRATIO'
+				minimum = 0.7
+			}
+			excludes = [
+				'biz.nellemann.libpaqle.pojo.*'
+			]
+		}
+	}
+}
+check.dependsOn jacocoTestCoverageVerification
