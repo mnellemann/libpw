@@ -9,7 +9,7 @@ pipelines:
         script:
           - ./gradlew clean build
   tags:                         # add the 'tags' section
-    release-*:                  # specify the tag
+    v*:                         # specify the tag
       - step:                   # define the build pipeline for the tag
           caches:
             - gradle
