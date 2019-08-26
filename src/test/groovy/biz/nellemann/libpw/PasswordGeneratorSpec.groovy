@@ -9,7 +9,6 @@ class PasswordGeneratorSpec extends Specification {
     String regexpNumeral = /[0-9]+/
     String regexpSymbols = /[^a-zA-Z\d\s:]/
 
-
     def setup() {
     }
 

@@ -73,11 +73,6 @@ jacocoTestReport {
 		csv.enabled false
 		html.destination file("${buildDir}/reports/coverage")
 	}
-	afterEvaluate {
-		classDirectories.setFrom(files(classDirectories.files.collect {
-			fileTree(dir: it, exclude: 'biz/nellemann/libpaqle/pojo/**')
-		}))
-	}
 }
 test.finalizedBy jacocoTestReport
 
@@ -90,9 +85,6 @@ jacocoTestCoverageVerification {
 				value = 'COVEREDRATIO'
 				minimum = 0.7
 			}
-			excludes = [
-				'biz.nellemann.libpaqle.pojo.*'
-			]
 		}
 	}
 }
