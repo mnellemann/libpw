@@ -7,8 +7,7 @@ buildscript {
     }
 }
 
-apply plugin: 'idea'
-apply plugin: 'java'
+apply plugin: 'java-library'
 apply plugin: 'groovy'
 apply plugin: 'jacoco'
 apply plugin: 'maven'
@@ -53,7 +52,7 @@ bintray {
     configurations = ['archives']
     pkg {
         repo = "libs"
-        name = id
+        name = "libpw"
         websiteUrl = siteUrl
         vcsUrl = gitUrl
         licenses = licenses
