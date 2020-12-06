@@ -3,7 +3,7 @@ buildscript {
         jcenter()
     }
     dependencies {
-		classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.4'
+		classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.5'
     }
 }
 
@@ -29,7 +29,7 @@ dependencies {
     testCompile("org.spockframework:spock-core:${spockVersion}") {
         exclude group: "org.codehaus.groovy"
     }
-    testCompile( 'com.athaydes:spock-reports:1.6.2' ) {
+    testCompile( 'com.athaydes:spock-reports:1.7.1' ) {
         transitive = false // this avoids affecting your version of Groovy/Spock
     }
 }

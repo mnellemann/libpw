@@ -20,9 +20,9 @@ public class PasswordGenerator {
             Boolean useSymbolChars) {
 
         int numberOfChars = passwordLength;
-        int numberOfCharsCapitalized = 0;
-        int numberOfCharsNumerals = 0;
-        int numberOfCharsSymbols = 0;
+        int numberOfCharsCapitalized;
+        int numberOfCharsNumerals;
+        int numberOfCharsSymbols;
 
         int charArrayPointer = 0;
         char[] charArray = new char[passwordLength];
@@ -49,22 +49,22 @@ public class PasswordGenerator {
         shuffleArray(charArray);
 
         StringBuilder sb = new StringBuilder(passwordLength);
-        for (int i = 0; i < charArray.length; i++) {
+        for (char c : charArray) {
 
-            log.debug(" > " + charArray[i]);
-            switch (charArray[i]) {
-            case 'a':
-                sb.append(getRandomAlpha());
-                break;
-            case 'A':
-                sb.append(getRandomAlphaCaps());
-                break;
-            case 'N':
-                sb.append(getRandomNumeric());
-                break;
-            case 'S':
-                sb.append(getRandomSymbol());
-                break;
+            log.debug(" > " + c);
+            switch (c) {
+                case 'a':
+                    sb.append(getRandomAlpha());
+                    break;
+                case 'A':
+                    sb.append(getRandomAlphaCaps());
+                    break;
+                case 'N':
+                    sb.append(getRandomNumeric());
+                    break;
+                case 'S':
+                    sb.append(getRandomSymbol());
+                    break;
             }
         }
         return sb.toString();
