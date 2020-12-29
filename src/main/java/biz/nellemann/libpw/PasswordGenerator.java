@@ -12,7 +12,7 @@ public class PasswordGenerator {
     protected static final String alphaChars = "abcdefghijklmnopqrstuvwxyz";
     protected static final String alphaCapsChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     protected static final String numeralChars = "0123456789";
-    protected static final String symbolChars = "!\"'#¤%&/()=?_-+*,.<>";
+    protected static final String symbolChars = "!'#%&/()=?_-+*,.<>";
 
     private static final SecureRandom rnd = new SecureRandom();
 
@@ -54,36 +54,24 @@ public class PasswordGenerator {
             log.debug(" > " + c);
             switch (c) {
                 case 'a':
-                    sb.append(getRandomAlpha());
+                    sb.append(getRandom(alphaChars));
                     break;
                 case 'A':
-                    sb.append(getRandomAlphaCaps());
+                    sb.append(getRandom(alphaCapsChars));
                     break;
                 case 'N':
-                    sb.append(getRandomNumeric());
+                    sb.append(getRandom(numeralChars));
                     break;
                 case 'S':
-                    sb.append(getRandomSymbol());
+                    sb.append(getRandom(symbolChars));
                     break;
             }
         }
         return sb.toString();
     }
 
-    static private char getRandomAlpha() {
-        return alphaChars.charAt(rnd.nextInt(alphaChars.length()));
-    }
-
-    static private char getRandomAlphaCaps() {
-        return alphaCapsChars.charAt(rnd.nextInt(alphaCapsChars.length()));
-    }
-
-    static private char getRandomNumeric() {
-        return numeralChars.charAt(rnd.nextInt(numeralChars.length()));
-    }
-
-    static private char getRandomSymbol() {
-        return symbolChars.charAt(rnd.nextInt(symbolChars.length()));
+    static private char getRandom(String str) {
+        return str.charAt(rnd.nextInt(str.length()));
     }
 
     static private int addCharsToArray(char[] a, int p, int n, char charToAdd) {

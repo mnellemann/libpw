@@ -1,7 +1,7 @@
 Password Library
 -----------------------------------
 
-Simple library to generate secure random passwords.
+Java library to generate secure random passwords.
 
 
 To build and test the code;
@@ -23,5 +23,24 @@ Import the library and use the static PasswordGenerator.random() method, which r
     }
 
     dependencies {
-        compile 'biz.nellemann.libs:libpw:1.0.+'
+        compile 'biz.nellemann.libs:libpw:1.0.8'
     }
+
+### Maven
+
+    <dependencies>
+        <dependency>
+            <groupId>biz.nellemann.libs</groupId>
+            <artifactId>libpw</artifactId>
+            <version>1.0.8</version>
+        </dependency>
+	</dependencies>
+
+	<repositories>
+        <repository>
+            <id>bintray-mnellemann-maven</id>
+            <name>bintray</name>
+            <url>https://dl.bintray.com/mnellemann/libs</url>
+        </repository>
+    </repositories>
+

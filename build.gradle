@@ -62,7 +62,7 @@ bintray {
 
 
 jacoco {
-	toolVersion = "0.8.4"
+	toolVersion = "0.8.5"
 }
 
 jacocoTestReport {
@@ -82,7 +82,7 @@ jacocoTestCoverageVerification {
 			limit {
 				counter = 'LINE'
 				value = 'COVEREDRATIO'
-				minimum = 0.7
+				minimum = 0.9
 			}
 		}
 	}
