@@ -15,4 +15,4 @@ pipelines:
             - gradle
           name: Build and Release
           script:
-            - ./gradlew clean build bintrayUpload
+            - ./gradlew clean build bintrayUpload bintrayPublish
