@@ -1,18 +1,9 @@
-buildscript {
-    repositories {
-        jcenter()
-    }
-    dependencies {
-		classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.5'
-    }
-}
 
 apply plugin: 'java-library'
 apply plugin: 'groovy'
 apply plugin: 'jacoco'
 apply plugin: 'maven'
 apply plugin: 'maven-publish'
-apply plugin: 'com.jfrog.bintray'
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
@@ -45,24 +36,8 @@ publishing {
     }
 }
 
-bintray {
-    user = System.getenv('BINTRAY_USER')
-    key = System.getenv('BINTRAY_KEY')
-
-    configurations = ['archives']
-    pkg {
-        repo = "libs"
-        name = "libpw"
-        websiteUrl = siteUrl
-        vcsUrl = gitUrl
-        licenses = licenses
-        publish = true
-    }
-}
-
-
 jacoco {
-	toolVersion = "0.8.5"
+	toolVersion = "0.8.7"
 }
 
 jacocoTestReport {
