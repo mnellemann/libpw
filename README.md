@@ -18,29 +18,36 @@ Import the library and use the static PasswordGenerator.random() method, which r
 
 ### Gradle
 
-    repositories {
-        maven { url 'https://dl.bintray.com/mnellemann/libs' } 
-    }
+```groovy
+repositories {
+    maven { url 'https://jitpack.io' }  // Add the JitPack repository to your build file
+}
 
-    dependencies {
-        compile 'biz.nellemann.libs:libpw:1.0.8'
-    }
+dependencies {
+    implementation 'org.bitbucket.mnellemann:libpw:v1.0.9'  // Add the dependency
+}
+```
 
 ### Maven
 
-    <dependencies>
-        <dependency>
-            <groupId>biz.nellemann.libs</groupId>
-            <artifactId>libpw</artifactId>
-            <version>1.0.8</version>
-        </dependency>
-	</dependencies>
+Add the JitPack repository to your build file
 
-	<repositories>
-        <repository>
-            <id>bintray-mnellemann-maven</id>
-            <name>bintray</name>
-            <url>https://dl.bintray.com/mnellemann/libs</url>
-        </repository>
-    </repositories>
+```xml
+<repositories>
+    <repository>
+        <id>jitpack.io</id>
+        <url>https://jitpack.io</url>
+    </repository>
+</repositories>
+```
 
+
+Add the dependency
+
+```xml
+<dependency>
+    <groupId>org.bitbucket.mnellemann</groupId>
+    <artifactId>libpw</artifactId>
+    <version>v1.0.9</version>
+</dependency>
+```
