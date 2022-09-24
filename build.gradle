@@ -2,45 +2,53 @@
 apply plugin: 'java-library'
 apply plugin: 'groovy'
 apply plugin: 'jacoco'
-apply plugin: 'maven'
 apply plugin: 'maven-publish'
+
 
 java {
     sourceCompatibility = JavaVersion.VERSION_1_8
     targetCompatibility = JavaVersion.VERSION_1_8
 }
 
+
 repositories {
     mavenCentral()
 }
 
-dependencies {
-    implementation("org.slf4j:slf4j-api:${slf4jVersion}")
 
-    testImplementation "org.slf4j:slf4j-simple:${slf4jVersion}"
-    testCompile("org.codehaus.groovy:groovy-all:${groovyVersion}")
-    testCompile("org.spockframework:spock-core:${spockVersion}") {
-        exclude group: "org.codehaus.groovy"
-    }
-    testCompile( 'com.athaydes:spock-reports:1.7.1' ) {
+dependencies {
+    implementation("org.slf4j:slf4j-api:2.0.2")
+
+    testImplementation "org.slf4j:slf4j-simple:2.0.1"
+    testImplementation('org.spockframework:spock-core:2.2-groovy-3.0')
+    testImplementation('com.athaydes:spock-reports:2.3.1-groovy-3.0') {
         transitive = false // this avoids affecting your version of Groovy/Spock
     }
 }
 
 publishing {
-    publications {
-        mavenJava(MavenPublication) {
-            from components.java
+    repositories {
+        maven {
+            name = "GitHubPackages"
+            url = uri("https://maven.pkg.github.com/mnellemann/libpw")
+            credentials {
+                username = project.findProperty("gpr.user") ?: System.getenv("USERNAME")
+                password = project.findProperty("gpr.key") ?: System.getenv("TOKEN")
+            }
         }
     }
-    repositories {
-        mavenLocal()
+    publications {
+        gpr(MavenPublication) {
+            from(components.java)
+        }
     }
 }
+
 
 jacoco {
 	toolVersion = "0.8.7"
 }
+
 
 jacocoTestReport {
 	group = "verification"
@@ -51,6 +59,7 @@ jacocoTestReport {
 	}
 }
 test.finalizedBy jacocoTestReport
+
 
 jacocoTestCoverageVerification {
 	violationRules {
